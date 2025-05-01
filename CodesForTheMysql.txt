@@ -1,0 +1,28 @@
+1. Make a database named (lost_and_found) in the mysql
+2. Enter into the (lost_and_found)
+3. Type this into the console -->
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100),
+    role ENUM('admin', 'user') DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    type ENUM('lost', 'found') NOT NULL,
+    location VARCHAR(100),
+    image VARCHAR(255),
+    date_posted DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+4. Create a acount 
+5. Choose a acount that you want to be a admin in the mysql and edit the user and select the admin instead of the regular user.
